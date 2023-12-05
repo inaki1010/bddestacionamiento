@@ -20,6 +20,12 @@ export default function Home() {
   const divStyle = {
     height: `calc(100vh - ${navbarHeight}px)`,
   };
+  const [selectedId, setSelectedId] = React.useState("/alumno");
+
+  const handleRadioChange = (id) => {
+    setSelectedId(id);
+    console.log(id);
+  };
   const [selected, setSelected] = React.useState("/alumno");
   return (
     <>
@@ -34,17 +40,30 @@ export default function Home() {
         <RadioGroup
           defaultValue="/alumno"
           className="size-lg"
-          value={selected}
-          onValueChange={setSelected}
+          onValueChange={handleRadioChange}
         >
-          <Radio value="/alumno">Alumno</Radio>
-          <Radio value="/administrativo">Administrativo</Radio>
-          <Radio value="/docente">Docente</Radio>
-          <Radio value="/invitado">Invitado</Radio>
+          <Radio value="/alumno" id="/alumno">
+            Alumno
+          </Radio>
+          <Radio value="/admin" id="/alumno">
+            Administrativo
+          </Radio>
+          <Radio value="/doc" id="/alumno">
+            Docente
+          </Radio>
+          <Radio value="/invitado" id="/invitado">
+            Invitado
+          </Radio>
         </RadioGroup>
         <br></br>
-        <Link href={selected}>
+        <Link href={selectedId}>
           <Button radius="full">Continuar</Button>
+        </Link>
+        <br></br>
+        <Link href="/consultas">
+          <Button variant="light" radius="full">
+            Consultas
+          </Button>
         </Link>
       </div>
     </>
